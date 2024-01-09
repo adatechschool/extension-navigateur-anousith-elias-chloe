@@ -2,12 +2,11 @@
     "manifest_version": 3,
     "name": "What'Font ?",
     "version": "1.0",
-    "description":"check the font",
+    "description": "check the font",
     "content_scripts": [
         {
             "js": ["content-script.js"],
-
-              "matches": ["https://*/*", "http://*/*"]  
+            "matches": ["https://*/*", "http://*/*"]
         }
     ]
 } 
