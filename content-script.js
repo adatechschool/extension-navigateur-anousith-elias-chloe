@@ -1,16 +1,21 @@
 console.log("hello world")
 
-const p = document.querySelector("h1")
-console.log("p = ", p)
+/*const h1 = document.querySelector("h1")
+console.log(h1)
+*/
 
-const style = getComputedStyle(p)
-console.log("getComputedStyle = ", style)
+const html = document.querySelectorAll("p")
 
-const color = style.color
-console.log("color = ", color)
+const giveMeTheFont = () => {
+        const style = getComputedStyle(allElement)
+        const font = style.fontFamily
+        console.log("html =", html)
+    }   
 
-const font = style.fontFamily
-console.log(font)
+for(const allElement of html) {
+    allElement.addEventListener("click", giveMeTheFont)
+}
+  
 
 
 // for (let i=0; i<p.length; i++) {
