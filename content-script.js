@@ -1,23 +1,17 @@
 console.log("hello world")
 
-/*const h1 = document.querySelector("h1")
-console.log(h1)
-*/
-
-const html = document.querySelectorAll("p")
-
-const giveMeTheFont = () => {
-        const style = getComputedStyle(allElement)
-        const font = style.fontFamily
-        console.log("html =", html)
-    }   
-
-for(const allElement of html) {
-    allElement.addEventListener("click", giveMeTheFont)
+const giveMeTheFont = (event) => {
+    const elementClicked = event.target
+    const styleofElementCLicked = getComputedStyle(elementClicked)
+    const font = styleofElementCLicked.fontFamily
+    console.log(font)
 }
-  
 
+document.addEventListener("click", giveMeTheFont);
 
-// for (let i=0; i<p.length; i++) {
-//     p[i].style.color = "green"
-// }
+window.open('https://javascript.info');
+
+// popup autorisée
+button.onclick = () => {
+  window.open('https://javascript.info');
+};
