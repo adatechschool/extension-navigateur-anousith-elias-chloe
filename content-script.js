@@ -7,11 +7,4 @@ const giveMeTheFont = (event) => {
     console.log(font)
 }
 
-document.addEventListener("click", giveMeTheFont);
-
-window.open('https://javascript.info');
-
-// popup autorisée
-button.onclick = () => {
-  window.open('https://javascript.info');
-};
+document.addEventListener("mouseover", giveMeTheFont)
