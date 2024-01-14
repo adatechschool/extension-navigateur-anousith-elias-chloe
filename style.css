@@ -1,0 +1,10 @@
+.hover{
+    border-radius: 20%;
+    border: groove red;
+    cursor: move;
+}
+
+*::after {
+    color: red;
+    background: orange;
+}

@@ -6,7 +6,11 @@
     "content_scripts": [
         {
             "js": ["content-script.js"],
-            "matches": ["https://*/*", "http://*/*"]  
+            "matches": ["https://*/*", "http://*/*"],
+            "css": ["style.css"],
+            "html": ["extension.html"]
+            
         }
-    ]
+        
+    ] 
 } 
