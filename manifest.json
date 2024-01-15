@@ -8,9 +8,10 @@
             "js": ["content-script.js"],
             "matches": ["https://*/*", "http://*/*"],
             "css": ["style.css"],
-            "html": ["extension.html"]
-            
+            "html": ["extension.html"],
+            "background": {
+                "service_worker": "background.js"
+            }
         }
-        
     ] 
 } 
