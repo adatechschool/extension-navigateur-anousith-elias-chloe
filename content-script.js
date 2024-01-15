@@ -1,4 +1,5 @@
 const giveMeTheFont = (event) => {
+<<<<<<< HEAD
     const elementOver = event.target // l'evenement se déroule lors du clic
     elementOver.className += " tooltip-container"
     const styleofElementOver = getComputedStyle(elementOver)
@@ -15,4 +16,15 @@ const giveMeTheFont = (event) => {
 }
 
 document.addEventListener("click", giveMeTheFont)
+=======
+    const elementClicked = event.target
+    const styleofElementCLicked = getComputedStyle(elementClicked)
+    const font = styleofElementCLicked.fontFamily
+    elementClicked.datatoggle = "tooltip"
+    elementClicked.title = font
+}
+
+document.addEventListener("mouseover", giveMeTheFont)
+
+>>>>>>> c0cd6445c4ab0467d677c927bcc65e96830e0c81
 
