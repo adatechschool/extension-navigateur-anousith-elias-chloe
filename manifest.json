@@ -2,22 +2,9 @@
     "manifest_version": 3,
     "name": "What'Font ?",
     "version": "1.0",
-<<<<<<< HEAD
+
     "description":"check the font",
-    "content_scripts": [
-        {
-            "js": ["content-script.js"],
-            "matches": ["https://*/*", "http://*/*"],
-            "css": ["style.css"],
-            "html": ["extension.html"],
-            "background": {
-                "service_worker": "background.js"
-            }
-        }
-    ] 
-} 
-=======
-    "description": "check the font",
+    
     "action": {
         "default_icon": {
             "16": "images/icon-16.png",
@@ -28,8 +15,9 @@
     },
     "background": 
         {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
         },
     "permissions":["activeTab", "scripting"]
 }
->>>>>>> c0cd6445c4ab0467d677c927bcc65e96830e0c81
+

@@ -1,30 +1,46 @@
+
 const giveMeTheFont = (event) => {
-<<<<<<< HEAD
-    const elementOver = event.target // l'evenement se déroule lors du clic
-    elementOver.className += " tooltip-container"
-    const styleofElementOver = getComputedStyle(elementOver)
-    const font = styleofElementOver.fontFamily
-   /* const body = document.querySelector("body")*/
-    const tooltip = document.createElement('div') // ont créer un élément enfant qui est la div avec laquelle otn manipulera le CSS
-    tooltip.className = "tooltip" 
-    tooltip.textContent = font // ici, ont appel la variable font qui contient toute les polices
-    elementOver.appendChild(tooltip)
-    console.log(tooltip)
-
-    //elementOver.datatoggle = "tooltip"
-    //elementOver.title = font
-}
-
-document.addEventListener("click", giveMeTheFont)
-=======
     const elementClicked = event.target
     const styleofElementCLicked = getComputedStyle(elementClicked)
     const font = styleofElementCLicked.fontFamily
     elementClicked.datatoggle = "tooltip"
     elementClicked.title = font
+};
+
+const removeTheFont = (event) => {
+    const elementClicked = event.target
+    elementClicked.datatoggle = ""
+    elementClicked.title = ""
+    console.log("datatogfle = ", elementClicked.datatoggle)
+    console.log("elementClicked.title", elementClicked.title)
 }
 
-document.addEventListener("mouseover", giveMeTheFont)
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendMessage) {
+        document.addEventListener('click', (event) => {
+            if(request.message === "giveMeTheFont") {
+                console.log("focntion giveMeTheFont")
+                giveMeTheFont(event)
+            }else if (request.message === "removeTheFont") {
+                console.log("fonction removeTheFont") 
+                removeTheFont(event)
+                document.addEventListener("click", removeTheFont)
+            }
+        }) 
+    }
+)
+ 
 
->>>>>>> c0cd6445c4ab0467d677c927bcc65e96830e0c81
 
+
+
+//    function(request, sender, sendResponse) {
+  
+// const giveMeTheFont = (event) => {
+//     const elementClicked = event.target
+//     const styleofElementCLicked = getComputedStyle(elementClicked)
+//     const font = styleofElementCLicked.fontFamily
+//     elementClicked.datatoggle = "tooltip"
+//     elementClicked.title = font
+// }
+// document.addEventListener("mouseover", giveMeTheFont)
