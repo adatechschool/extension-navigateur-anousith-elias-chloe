@@ -15,26 +15,17 @@ chrome.action.onClicked.addListener(async (tab) => {
         text: nextState,
     });
     if (nextState === "ON") {
+ 
         console.log("on")
+
+        const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+        const response = chrome.tabs.sendMessage(tab.id, {message: "giveMeTheFont"});
+        
+
     } else if (nextState === "OFF") {
-        console.log("off")
+        const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+        const response = chrome.tabs.sendMessage(tab.id, {message: "removeTheFont"});
     }
 }
+
 );
-// (async () => {
-//     const response = await chrome.runtime.sendMessage({greeting: "hello" })
-//     console.log(response)
-// })()
-// (async () => {
-//     const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-//     console.log(tab)
-//     console.log("tab = ", [tab][0])
-//     console.log("tab.id ", [tab][0].id)
-//     const response = chrome.tabs.sendMessage(tab.id, {greeting: "hello"});
-//     // do something with response here, not outside the function
-//     console.log("response = ", response);
-// })()
-
-
-
-
