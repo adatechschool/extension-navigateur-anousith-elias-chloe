@@ -15,15 +15,12 @@ const removeTheFont = (event) => {
 }
 
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.message === "giveMeTheFont") {
-          document.addEventListener("mouseover", giveMeTheFont)
-        } else if (request.message = "removeTheFont") {
-          document.addEventListener("mouseover", removeTheFont)
-        }
-      }
-      );
-      
-          
-
+  function (request, sender, sendResponse) {
+    if (request.message === "giveMeTheFont") {
+      document.addEventListener("mouseover", giveMeTheFont)
+    } else if (request.message = "removeTheFont") {
+      document.addEventListener("mouseover", removeTheFont)
+    }
+  }
+);
 
