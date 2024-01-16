@@ -12,8 +12,11 @@
         }
     },
     "background": 
+        {"service_worker": "background.js"},
+    "content_scripts":[
         {
-        "service_worker": "background.js"
-        },
+            "js":["content-script.js"],
+        "matches":["https://*/*", "http://*/*"]
+    }],
     "permissions":["activeTab", "scripting"]
 }
