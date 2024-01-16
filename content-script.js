@@ -1,77 +1,38 @@
-
 const giveMeTheFont = (event) => {
-
-    const elementClicked = event.target
-    const styleofElementCLicked = getComputedStyle(elementClicked)
-    const font = styleofElementCLicked.fontFamily
-    elementClicked.datatoggle = "tooltip"
-    elementClicked.title = font
-};
-
-/*const removeTheFont = (event) => {
-    const elementClicked = event.target
-    elementClicked.datatoggle = ""
-    elementClicked.title = ""
-    console.log("datatogfle = ", elementClicked.datatoggle)
-    console.log("elementClicked.title", elementClicked.title)
-}
-*/
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendMessage) {
-        document.addEventListener('click', (event) => {
-            if(request.message === "giveMeTheFont") {
-                console.log("focntion giveMeTheFont")
-                giveMeTheFont(event)
-            }else if (request.message === "removeTheFont") {
-                console.log("fonction removeTheFont") 
-                removeTheFont(event)
-                document.addEventListener("click", removeTheFont)
-            }
-        }) 
-    }
-)
- 
-
-
   const elementClicked = event.target
+  // Récupère les éléments CSS de l'élément survolé par la souris, puis récupère la font-family
   const styleofElementCLicked = getComputedStyle(elementClicked)
   const font = styleofElementCLicked.fontFamily
+
+  // Setup du tooltip
   elementClicked.datatoggle = "tooltip"
   elementClicked.title = font
-  console.log("fonction giveMeTheFont = ", elementClicked.datatoggle, elementClicked.title)
-
+  // console.log("fonction giveMeTheFont = ", elementClicked.datatoggle, elementClicked.title)
+}
 
 const removeTheFont = (event) => {
   const elementClicked = event.target
+  // Delete le contenu du tooltip
   elementClicked.datatoggle = ""
   elementClicked.title = ""
-  console.log("fonction removeTheFont ", elementClicked.datatoggle, elementClicked.title)
+  // console.log("fonction removeTheFont ", elementClicked.datatoggle, elementClicked.title)
 }
 
-
+// Ecoute les messages reçus par le background
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    if (request.message === "giveMeTheFont") {
+    if (request.message === "giveMeTheFontWhenButtonOn") {
+      // Supprime l'event listener de l'état précédent, puis active l'event listener de l'état actuel (pour éviter la superposition/conflit entre les deux event listener)
       document.removeEventListener("mouseover", removeTheFont)
       document.addEventListener("mouseover", giveMeTheFont)
-    } else if (request.message = "removeTheFont") {
+    } else if (request.message = "removeTheFontWhenButtonOff") {
+      // Supprime l'event listener de l'état précédent, puis active l'event listener de l'état actuel (pour éviter la superposition/conflit entre les deux event listener)
       document.removeEventListener("mouseover", giveMeTheFont)
       document.addEventListener("mouseover", removeTheFont)
     }
+
+    // Reset le contenu des messages pour éviter la superposition/conflit des deux messages
     delete request.message
   }
 );
 
-
-
-
-//    function(request, sender, sendResponse) {
-  
-// const giveMeTheFont = (event) => {
-//     const elementClicked = event.target
-//     const styleofElementCLicked = getComputedStyle(elementClicked)
-//     const font = styleofElementCLicked.fontFamily
-//     elementClicked.datatoggle = "tooltip"
-//     elementClicked.title = font
-// }
-// document.addEventListener("mouseover", giveMeTheFont)
